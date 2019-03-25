@@ -1,0 +1,25 @@
+<TextureAtlas imagePath="sprites.png">
+	<SubTexture name="fx_explosion_explosion1.png" x="132" y="131" width="60" height="60"/>
+	<SubTexture name="fx_explosion_explosion2.png" x="132" y="193" width="57" height="56"/>
+	<SubTexture name="fx_explosion_explosion3.png" x="132" y="66" width="64" height="63"/>
+	<SubTexture name="fx_explosion_explosion4.png" x="194" y="131" width="46" height="45"/>
+	<SubTexture name="fx_explosion_explosion5.png" x="191" y="193" width="53" height="52"/>
+	<SubTexture name="fx_shot1.png" x="228" y="96" width="20" height="25"/>
+	<SubTexture name="fx_shot2.png" x="242" y="38" width="16" height="28"/>
+	<SubTexture name="obj_barrel.png" x="220" y="247" width="24" height="24"/>
+	<SubTexture name="obj_crate.png" x="198" y="96" width="28" height="28"/>
+	<SubTexture name="obj_fence.png" x="132" y="251" width="52" height="16"/>
+	<SubTexture name="obj_sandbag.png" x="186" y="251" width="32" height="22"/>
+	<SubTexture name="obj_tree_treeLarge.png" x="132" y="0" width="64" height="64"/>
+	<SubTexture name="obj_tree_treeSmall.png" x="242" y="0" width="36" height="36"/>
+	<SubTexture name="tank_enemy.png" x="198" y="48" width="42" height="46"/>
+	<SubTexture name="tank_player.png" x="198" y="0" width="42" height="46"/>
+	<SubTexture name="tile_floor1.png" x="66" y="198" width="64" height="64"/>
+	<SubTexture name="tile_floor2.png" x="66" y="132" width="64" height="64"/>
+	<SubTexture name="tile_roadCornerLL.png" x="66" y="66" width="64" height="64"/>
+	<SubTexture name="tile_roadCornerLR.png" x="66" y="0" width="64" height="64"/>
+	<SubTexture name="tile_roadCornerUL.png" x="0" y="198" width="64" height="64"/>
+	<SubTexture name="tile_roadCornerUR.png" x="0" y="132" width="64" height="64"/>
+	<SubTexture name="tile_roadEast.png" x="0" y="66" width="64" height="64"/>
+	<SubTexture name="tile_roadNorth.png" x="0" y="0" width="64" height="64"/>
+</TextureAtlas>
