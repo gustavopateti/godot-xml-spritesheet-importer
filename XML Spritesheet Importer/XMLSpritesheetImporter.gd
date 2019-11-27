@@ -14,33 +14,43 @@ var xml: XMLParser = XMLParser.new()
 const IMAGES_PATH: String = "res://image"
 
 func _run() -> void:
-  # create spritesheet texture
-  var spritesheet: StreamTexture = get_spritesheet_texture()
-
-  if spritesheet:
-    # if spritesheet texture exists, proceed to open xml file
-    if open_spritesheet_data():
+  var spritesheet_names: PoolStringArray = get_spritesheet_names()
+  for spritesheet_name in spritesheet_names:  
+    # create spritesheet texture
+    var spritesheet: StreamTexture = get_spritesheet_texture(spritesheet_name)
+    if open_spritesheet_data(spritesheet_name):
+      
       # start reading subtextures nodes
       var end: bool = false
-
       # loop trough xml (not closing) elements
       while not end:
         edit_texture(spritesheet)
-
         end = not read_next_texture()
+
 
 ##
 # Create and return a stream texture from the spritesheet
 ##
-func get_spritesheet_texture() -> StreamTexture:
-  var spritesheet: StreamTexture = null
-  var sprites_path: String = IMAGES_PATH + "/sprites.png"
+func get_spritesheet_texture(spritesheet_name: String) -> StreamTexture:
+  var sprites_path: String = IMAGES_PATH + "/" + spritesheet_name + ".png"
+  return  load(sprites_path) as StreamTexture
 
-  # check if spritesheet image exists and load it
-  if dir.file_exists(sprites_path):
-    spritesheet = load(sprites_path) as StreamTexture
-
-  return spritesheet
+##
+# Create and return an array of spritesheet names
+##
+func get_spritesheet_names() -> PoolStringArray:
+    var regex = RegEx.new()
+    regex.compile("(?<spritesheet_name>[^\\.]+)\\.png")
+    var spritesheet_names = PoolStringArray()
+    if dir.open(IMAGES_PATH) == OK:
+        dir.list_dir_begin(true, true)
+        var file_name = dir.get_next()
+        while (file_name != ""):
+            var result = regex.search(file_name)
+            if result:
+               spritesheet_names.append(result.get_string("spritesheet_name")) 
+            file_name = dir.get_next()
+    return spritesheet_names
 
 ##
 # Check if a folder exists, if not, create it
@@ -63,9 +73,9 @@ func init_folder(path: String) -> bool:
 ##
 # Open spritesheet xml data to get it ready to be readed
 ##
-func open_spritesheet_data() -> bool:
+func open_spritesheet_data(spritesheet_name: String) -> bool:
   # try to open spritesheet xml file
-  if xml.open(IMAGES_PATH + "/sprites.xml") == OK:
+  if xml.open(IMAGES_PATH + "/" + spritesheet_name + ".xml") == OK:
     # go to first subtexture element
     if xml.seek(1) == OK:
       if read_next_texture():
@@ -211,3 +221,4 @@ func edit_tileset(texture: AtlasTexture, texture_name: String) -> void:
       print("tileset: ", tileset_path, " saved.")
     else:
       print("Error while saving tileset: ", tileset_path)
+      
